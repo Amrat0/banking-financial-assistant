@@ -1,0 +1,250 @@
+﻿@* STEP 4: Chat UI - User types here, JavaScript sends to controller, display AI reply *@
+
+@{
+    ViewData["Title"] = "Chat";
+}
+
+<link rel="stylesheet" href="~/css/chat.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/js/site.js"   asp-append-version="true" />
+
+@Html.AntiForgeryToken()
+
+<div class="chat-container">
+
+    <!-- =========================
+         CHAT HEADER
+         ========================= -->
+    <div class="chat-header">
+
+        <a  style="text-decoration:none " asp-controller="Chat" asp-action="Index"> 
+
+        <div >
+            <img class="chat-header-icon"  src="~/Image/headphone.png" alt="assistant icon"/>
+        </div>
+
+
+        <div class="iconOn" >
+            <h3>Banking & Financial Assistant</h3> </a>
+
+            <span class="onlineDot" >Online<img class="dot"  src="~/Image/dot.png" alt="dot online img"/></span>     
+          
+        </div>
+
+         <button id="darkModeBtn" class="dark-mode-btn" type="button">
+                🌙
+            </button>
+
+    </div>
+
+
+    <!-- =========================
+         CHAT MESSAGES
+         ========================= -->
+    <div class="chat-messages" id="chatMessages">
+
+        <!-- Welcome message -->
+        <div class="chat-welcome" id="chatWelcome">
+
+            <div >
+               <img  class="welcome-icon" src="~/Image/customer.png" alt="cutomer support img" />
+            </div>
+            <h3> Welcome </h3>
+            <p>
+                 Banking & Financial Assistant
+            <p>
+
+            <p>
+                How can I assist you with your banking and financial needs today?
+            </p>
+
+
+
+            <div class="quick-cards">
+
+    <button type="button"
+            class="quick-card"
+            data-message="Tell me about bank accounts, including types of accounts, benefits, requirements, and how to open an account.">
+
+        <span class="quick-card-icon">🏦</span>
+
+        <span class="quick-card-title">
+            Bank Accounts
+        </span>
+
+        <span class="quick-card-description">
+            Accounts & requirements
+        </span>
+
+    </button>
+
+
+    <button type="button"
+            class="quick-card"
+            data-message="Tell me about credit cards, including types, benefits, eligibility, fees, and application process.">
+
+        <span class="quick-card-icon">💳</span>
+
+        <span class="quick-card-title">
+            Credit Cards
+        </span>
+
+        <span class="quick-card-description">
+            Cards & benefits
+        </span>
+
+    </button>
+
+
+    <button type="button"
+            class="quick-card"
+            data-message="Tell me about bank loans, including available loan types, eligibility, documents, interest rates, and repayment options.">
+
+        <span class="quick-card-icon">💰</span>
+
+        <span class="quick-card-title">
+            Loans
+        </span>
+
+        <span class="quick-card-description">
+            Loans & financing
+        </span>
+
+    </button>
+
+
+    <button type="button"
+            class="quick-card"
+            data-message="Tell me about savings and investment options, including savings accounts, term deposits, and investment products.">
+
+        <span class="quick-card-icon">📈</span>
+
+        <span class="quick-card-title">
+            Savings & Investment
+        </span>
+
+        <span class="quick-card-description">
+            Grow your money
+        </span>
+
+    </button>
+
+
+    <button type="button"
+            class="quick-card"
+            data-message="Tell me about money transfers, including local transfers, international transfers, transfer limits, fees, and processing times.">
+
+        <span class="quick-card-icon">💸</span>
+
+        <span class="quick-card-title">
+            Money Transfer
+        </span>
+
+        <span class="quick-card-description">
+            Send & receive money
+        </span>
+
+    </button>
+
+
+    <button type="button"
+            class="quick-card"
+            data-message="Tell me how to protect my bank account, including fraud prevention, suspicious transactions, phishing, and what to do if my account is compromised.">
+
+        <span class="quick-card-icon">🔐</span>
+
+        <span class="quick-card-title">
+            Security
+        </span>
+
+        <span class="quick-card-description">
+            Protect your account
+        </span>
+
+    </button>
+
+</div>
+
+        </div>
+ 
+
+     
+
+    </div>
+
+
+    <!-- =========================
+         CHAT INPUT
+         ========================= -->
+    <div class="chat-input-wrapper">
+
+                     <!-- =========================
+             AI WAITING / THINKING
+             ========================= -->
+        <div class="chat-typing"
+             id="chatTyping"
+             style="display: none;">
+
+            <span >
+              <img class="chat-avatar" src="~/Image/customerSearch.png" alt="Assistant Logo" />
+            </span>
+
+            <div class="typing-content">
+
+              @*   <span class="typing-text">
+                   Assistant
+                </span> *@
+
+                <span class="typing-dots">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="chat-input-area">
+
+
+            <input type="text"
+                   id="chatInput"
+                   placeholder="Message Assistant..."
+                   maxlength="4000"
+                   autocomplete="off" />
+
+
+
+            <button type="button"
+                    id="btnSend"
+                    aria-label="Send message">
+
+                <span>
+                    ➤
+                </span>
+
+            </button>
+
+         
+        </div>
+
+        
+        <div class="input-footer">
+
+            <span>
+                     @@Amratamu
+            </span>
+
+            <span>
+                Assistant can make mistakes. Check important information.
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
